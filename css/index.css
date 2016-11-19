@@ -6,3 +6,11 @@
     cursor: pointer;
     cursor: hand;
 }
+
+
+#file-contents,
+#request-result{
+    height: 65vh;
+    width: 100%;
+    resize: none;
+}

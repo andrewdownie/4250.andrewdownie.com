@@ -36,8 +36,8 @@
 
     <!-- File List -->
                 <h3>Json Files</h3>
-                <div class="list-group">
-                    <button type="button" class="list-group-item">Custom Input...</button>
+                <div class="list-group" id="json-files">
+                    <button type="button" class="list-group-item" id="customize-input">Customize Input...</button>
                     <button type="button" class="list-group-item active">Text file 1.txt</button>
                     <button type="button" class="list-group-item">Text file 2.txt</button>
                     <button type="button" class="list-group-item">Text file 3.txt</button>
@@ -47,9 +47,8 @@
     <!-- File Contents -->
             <div class="col-md-9">
                 <h3>File Contents</h3>
-                <div class="panel-body jumbotron" id="file-contents">
-                    This is where the text from the selected file would go.
-                </div>
+                <textarea readonly class="panel-body jumbotron" id="file-contents">
+                </textarea>
 
             </div>
         </div>
@@ -112,9 +111,8 @@
             <br/>
             <div class="col-md-12">
                 <h3>Request Result</h3>
-                <div class="panel-body jumbotron">
-                    This is where the text from the last request would go. 
-                </div>
+                <textarea class="panel-body jumbotron" id="request-result">
+                </textarea>
             </div>
 
         </div>
