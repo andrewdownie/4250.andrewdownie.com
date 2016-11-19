@@ -1,16 +1,68 @@
 <html>
 
 <head>
-    
+    <!-- Prerequisite JS -->    
     <script src="js/jquery-3.1.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/listFiles.js"></script>
+
+    <!-- Include JS -->
+    <script src="js/loadNavBar.js"></script>
+    <script src="js/googleDrive.js"></script>
+
+    <!-- Include CSS -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+
+    <!-- Include HTML --> 
+    <script>
+        $(document).ready(function(){
+            LoadNavBar("top-navigation", "top-nav-home")
+        });
+    </script>
 
 </head>
 
-<body>
 
-    <div id="insertion-point">insert here</div>
+<body>
+    <div class="container">
+<!-- Navigation -->
+        <div id="top-navigation"></div>    
+
+
+<!-- File Selection -->
+        <div class="row">
+            <div class="col-md-3">
+                <h3>Json Files:</h3>
+                <div class="list-group">
+                    <button type="button" class="list-group-item active">Text file 1</button>
+                    <button type="button" class="list-group-item">Text file 2</button>
+                    <button type="button" class="list-group-item">Text file 3</button>
+
+
+                </div>
+            </div>
+            <div class="col-md-9">
+                <h3>File Contents:</h3>
+                <div class="panel-body jumbotron" id="file-contents">
+                    This is where the text from the selected file would go.
+                </div>
+
+            </div>
+        </div>
+
+<!-- Results -->
+        <div class="row">
+            <br/>
+            <div class="col-md-12">
+                <h3>Request Result:</h3>
+                <div class="panel-body jumbotron">
+                    This is where the text from the last request would go. 
+                </div>
+            </div>
+
+        </div>
+
+<!-- Close container -->
+    </div>
 </body>
 
 </html>

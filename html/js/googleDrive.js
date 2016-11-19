@@ -33,8 +33,8 @@ function RequestTextFile(file_id){
         result = result.replace(/\\r\\n/g, "<br />")
         result = result.substring(1) 
         result = result.substring(0, result.length - 1)
-        alert(result)
-        $("#insertion-point").after("<div>" + result + "</div>")
+        //alert(result)
+        $("#file-contents").html(result)
     });
 
 }
