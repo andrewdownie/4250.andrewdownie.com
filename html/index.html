@@ -31,17 +31,20 @@
 <!-- File Selection -->
         <div class="row">
             <div class="col-md-3">
-                <h3>Json Files:</h3>
+
+    <!-- File List -->
+                <h3>Json Files</h3>
                 <div class="list-group">
-                    <button type="button" class="list-group-item active">Text file 1</button>
-                    <button type="button" class="list-group-item">Text file 2</button>
-                    <button type="button" class="list-group-item">Text file 3</button>
-
-
+                    <button type="button" class="list-group-item">Custom Input...</button>
+                    <button type="button" class="list-group-item active">Text file 1.txt</button>
+                    <button type="button" class="list-group-item">Text file 2.txt</button>
+                    <button type="button" class="list-group-item">Text file 3.txt</button>
                 </div>
             </div>
+            
+    <!-- File Contents -->
             <div class="col-md-9">
-                <h3>File Contents:</h3>
+                <h3>File Contents</h3>
                 <div class="panel-body jumbotron" id="file-contents">
                     This is where the text from the selected file would go.
                 </div>
@@ -49,11 +52,64 @@
             </div>
         </div>
 
+
+<!-- Perform Request -->
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Perform Request</h3>
+                <div class="row">
+               
+    <!-- Host -->
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                    Host 
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Google Cloud Instance</a></li>
+                                    <li><a href="#">localhost</a></li>
+                                </ul>
+                            </div>
+                            <input type="text" class="form-control" id="host" value="localhost">
+                        </div>
+                    </div>
+
+    <!-- Port -->
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                    Port 
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Default</a></li>
+                                </ul>
+                            </div>
+                            <input type="text" class="form-control" id="Port" value="12345">
+                        </div>
+                    </div>
+
+
+    <!-- Request Button -->
+                    <div class="col-md-12">
+                        <br/>
+                         <button type="button" class="btn btn-primary">Perform Request</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        
+
+        
 <!-- Results -->
         <div class="row">
             <br/>
             <div class="col-md-12">
-                <h3>Request Result:</h3>
+                <h3>Request Result</h3>
                 <div class="panel-body jumbotron">
                     This is where the text from the last request would go. 
                 </div>
