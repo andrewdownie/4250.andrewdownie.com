@@ -3,15 +3,6 @@ var API_KEY = "AIzaSyCezOKNqrj4hqNqIanUDNeqnupvHdGge-o"
 var FOLDER_ID = '0B1esFIYXspGHM2ZvbzFFaDNKT3c'
 
 
-
-
-
-$(document).ready(function() {
-
-    RequestTextFiles() 
-
-});
-
 /////
 ///// RequestTextFile: gets the contents of the google doc in plaintext
 /////
@@ -19,9 +10,8 @@ function RequestTextFile(file_id){
 
     var promise = $.getJSON(BuildFileUrl(file_id, API_KEY), function( data, status){
         alert("Success")
-    });
-
-    promise.done(function( data ){
+    })
+    .done(function( data ){
         JSON.stringify(data)
         
     }).fail(function(jsonError){
@@ -39,7 +29,7 @@ function RequestTextFile(file_id){
 
 
 
-/////
+///// DELETE THIS -----------------------------------------------------
 ///// ListTextFiles: Appends dictionary of file names to the webpage
 /////
 function ListTextFiles(textFiles){
@@ -60,14 +50,13 @@ function ListTextFiles(textFiles){
 /////
 ///// RequestTextFiles: Sends an api request for all the files in a google drive folder
 /////
-function RequestTextFiles(){
+function RequestDocs(callback){
 
     var promise = $.getJSON(BuildFolderUrl(FOLDER_ID, API_KEY), function( data, status){
         //alert("Success")
-    });
 
-    promise.done(function( data ){
-        ListTextFiles(PackTextFiles(data))
+    }).done(function( data ){
+        callback(PackTextFiles(data)) //Add pack folders
 
     }).fail(function(jsonError){
         alert("Google Drive Folder AJAX JSON Request failed, see browser log for full error.") 
@@ -96,6 +85,11 @@ function PackTextFiles(jsonData){
 
     return textFiles
 }
+
+
+/////
+///// PackFolders
+/////
 
 
 

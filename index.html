@@ -4,22 +4,16 @@
     <!-- Prerequisite JS -->    
     <script src="js/jquery-3.1.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/googleDrive.js"></script>
 
     <!-- Include JS -->
     <script src="js/loadNavBar.js"></script>
-    <script src="js/googleDrive.js"></script>
     <script src="js/index.js"></script>
 
     <!-- Include CSS -->
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/index.css">
 
-    <!-- Include HTML --> 
-    <script>
-        $(document).ready(function(){
-            LoadNavBar("top-navigation", "top-nav-home")
-        });
-    </script>
 
 </head>
 
@@ -97,7 +91,7 @@
     <!-- Request Button -->
                     <div class="col-md-12">
                         <br/>
-                         <button type="button" class="btn btn-primary">Perform Request</button>
+                         <button id="perform-request" type="button" class="btn btn-primary">Perform Request</button>
                     </div>
 
                 </div>

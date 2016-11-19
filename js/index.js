@@ -1,5 +1,28 @@
 $(document).ready(function(){
+    LoadNavBar("top-navigation", "top-nav-home")
+    SetupButtons()
 
+    RequestDocs(RequestDocsCallback) 
+    
+});
+
+
+function RequestDocsCallback(resultDict){
+
+
+    var i = 0
+    for(var key in resultDict){
+        if(i == 0){
+            i++
+            RequestTextFile(resultDict[key]) 
+        }
+        //alert(key + ":  " + resultDict[key])
+    }
+
+}
+
+
+function SetupButtons(){
 
     $("#host-dropdown a").click(function(){
         var host = $(this).attr("host")
@@ -18,7 +41,8 @@ $(document).ready(function(){
 
         $("#file-contents").removeAttr("readonly")
     });
-});
 
-
-
+    $("#perform-request").click(function(){
+        alert("perform request")
+    });
+}
