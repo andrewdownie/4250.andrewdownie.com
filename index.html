@@ -8,9 +8,11 @@
     <!-- Include JS -->
     <script src="js/loadNavBar.js"></script>
     <script src="js/googleDrive.js"></script>
+    <script src="js/index.js"></script>
 
     <!-- Include CSS -->
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
 
     <!-- Include HTML --> 
     <script>
@@ -63,16 +65,16 @@
                     <div class="col-md-6">
                         <div class="input-group">
                             <div class="input-group-btn">
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                <button type="button" class="btn btn-default dropdown-toggle hostport-width" data-toggle="dropdown">
                                     Host 
                                     <span class="caret"></span>
                                 </button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Google Cloud Instance</a></li>
-                                    <li><a href="#">localhost</a></li>
+                                <ul id="host-dropdown" class="dropdown-menu">
+                                    <li><a host="104.196.166.63" class="dropdown-linkbtn">Google Cloud Instance</a></li>
+                                    <li><a host="localhost" class="dropdown-linkbtn">localhost</a></li>
                                 </ul>
                             </div>
-                            <input type="text" class="form-control" id="host" value="localhost">
+                            <input type="text" class="form-control" id="host-input" value="localhost">
                         </div>
                     </div>
 
@@ -80,15 +82,15 @@
                     <div class="col-md-6">
                         <div class="input-group">
                             <div class="input-group-btn">
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                <button id="dropdown-port" type="button" class="btn btn-default dropdown-toggle hostport-width" data-toggle="dropdown">
                                     Port 
                                     <span class="caret"></span>
                                 </button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Default</a></li>
+                                <ul id="port-dropdown" class="dropdown-menu">
+                                    <li><a port="12345" class="dropdown-linkbtn">Default</a></li>
                                 </ul>
                             </div>
-                            <input type="text" class="form-control" id="Port" value="12345">
+                            <input type="text" class="form-control" id="port-input" value="12345">
                         </div>
                     </div>
 
