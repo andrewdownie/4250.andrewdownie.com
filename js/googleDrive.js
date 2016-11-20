@@ -32,7 +32,7 @@ function RequestFolderContents(callback, folder_id, api_key){
         //alert("Success")
 
     }).done(function( data ){
-        callback(_PackFolderContents(data)) //Add folder id here, so we know who made the request
+        callback(_PackFolderContents(data), folder_id)
 
     }).fail(function(jsonError){
         alert("Google Drive Folder AJAX JSON Request failed, see browser log for full error.")

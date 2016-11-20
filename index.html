@@ -20,7 +20,7 @@
 
 
 <body>
-    <div class="container">
+    <div class="container-fluid">
 <!-- Navigation -->
         <div id="top-navigation"></div>
 
@@ -30,7 +30,7 @@
             <div class="col-md-3">
 
     <!-- File List -->
-                <h3>Json Files</h3>
+                <h3>Json Files <small><a target="_blank" href="https://drive.google.com/drive/folders/0B1esFIYXspGHM2ZvbzFFaDNKT3c">Source</a></small></h3>
                 <div class="btn-group" role="group" id="json-files">
                     <button type="button" class="list-group-item" id="customize-input"><span class="glyphicon glyphicon-pencil"></span>&nbsp;Customize Input...</button>
                 </div>
@@ -39,7 +39,7 @@
     <!-- File Contents -->
             <div class="col-md-9">
                 <h3>File Contents <small id="current-file"></small></h3>
-                <textarea readonly="readonly" class="panel-body jumbotron" id="file-contents">
+                <textarea readonly="readonly" class="panel-body jumbotron" id="file-contents">Loading...
                 </textarea>
 
             </div>

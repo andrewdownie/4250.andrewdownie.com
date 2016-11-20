@@ -6,19 +6,17 @@ $(document).ready(function(){
     LoadNavBar("top-navigation", "top-nav-home")
     SetupButtons()
 
-    RequestFolderContents(RequestFolderContentsCallback, ROOT_FOLDER_ID, API_KEY)
+    //$("#json-files").attr("gd_id", ROOT_FOLDER_ID)
+    RequestFolderContents(RequestRootFolderContentsCallback, ROOT_FOLDER_ID, API_KEY)
 });
 
 
-function RequestFolderContentsCallback(resultList){
-
-
+function RequestRootFolderContentsCallback(resultList, folderID){
     var firstDocumentFound = false
 
     for(var i = 0; i < resultList.length; i++){
         var curItem = resultList[i]
 
-        //AddJsonFileButton("json-files", curItem.type, curItem.name, curItem.id)
         $("#json-files").append(BuildJsonFileButton(curItem.type, curItem.name, curItem.id))
 
         if(firstDocumentFound == false && curItem.type == "document"){
@@ -26,10 +24,20 @@ function RequestFolderContentsCallback(resultList){
             RequestTextFile(curItem.id, API_KEY)
             $("#current-file").text(curItem.name)
         }
+    }
+}
 
+function RequestSubFolderContentsCallback(resultList, folderID){
+    $("#" + folderID).siblings("ul").empty()
 
+    for(var i = 0; i < resultList.length; i++){
+        var curItem = resultList[i]
+
+        var fileLink = BuildJsonFileLink(curItem.name, curItem.id)
+        $("#" + folderID).siblings("ul").append(fileLink)
     }
 
+    $("#" + folderID).attr("loaded", true)
 }
 
 
@@ -59,10 +67,24 @@ function SetupButtons(){
 
 
     $("#json-files").on('click', '.dropdown-toggle', function(){
-        alert("meow")
+        if( $(this).attr("loaded") !== "true"){
+            RequestFolderContents(RequestSubFolderContentsCallback, this.id, API_KEY)
+        }
     });
 
     $("#json-files").on('click', 'button:not(.dropdown-toggle, #customize-input)', function(){
+        var fileName = $(this).find(".name").text()
+        var fileID = this.id
+
+        $("#file-contents").val('Loading...')
+        $("#file-contents").attr("readonly", true)
+
+        RequestTextFile(fileID, API_KEY)
+        $("#current-file").text(fileName)
+
+    });
+
+    $("#json-files").on('click', '.btn-group ul li a', function(){
         var fileName = $(this).find(".name").text()
         var fileID = this.id
 

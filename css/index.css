@@ -2,7 +2,8 @@
     width: 100px;
 }
 
-.dropdown-linkbtn{
+.dropdown-linkbtn,
+.dropdown-menu{
     cursor: pointer;
     cursor: hand;
 }
@@ -18,7 +19,7 @@
 #file-contents,
 #request-result{
     min-height: 10vh;
-    height: 65vh;
+    height: 55vh;
     width: 100%;
     resize: none;
     background-color: light-grey;
@@ -28,9 +29,10 @@
 
 #request-result{
     resize: vertical;
-    margin-bottom: 30vh;
+    margin-bottom: 20vh;
 }
 
-#json-files .btn-group{
+#json-files .btn-group,
+#json-files ul{
     width: 100%;
 }
