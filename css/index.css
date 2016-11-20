@@ -8,9 +8,22 @@
 }
 
 
+#file-contents:read-write{
+    background-color: white;
+}
+
 #file-contents,
 #request-result{
+    min-height: 10vh;
     height: 65vh;
     width: 100%;
     resize: none;
+    background-color: light-grey;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#request-result{
+    resize: vertical;
+    margin-bottom: 30vh;
 }

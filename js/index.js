@@ -1,22 +1,32 @@
+//CONSTANTS
+var API_KEY = "AIzaSyCezOKNqrj4hqNqIanUDNeqnupvHdGge-o"
+var ROOT_FOLDER_ID = '0B1esFIYXspGHM2ZvbzFFaDNKT3c'
+
 $(document).ready(function(){
     LoadNavBar("top-navigation", "top-nav-home")
     SetupButtons()
 
-    RequestDocs(RequestDocsCallback) 
-    
+    RequestFolderContents(RequestDocsCallback, ROOT_FOLDER_ID, API_KEY)
 });
 
 
-function RequestDocsCallback(resultDict){
+function RequestDocsCallback(resultList){
 
 
-    var i = 0
-    for(var key in resultDict){
-        if(i == 0){
-            i++
-            RequestTextFile(resultDict[key]) 
+    var firstDocumentFound = false
+
+    for(var i = 0; i < resultList.length; i++){
+        var curItem = resultList[i]
+
+        AddJsonFileButton("json-files", curItem.type, curItem.name, curItem.id)
+
+        if(firstDocumentFound == false && curItem.type == "document"){
+            firstDocumentFound = true
+            RequestTextFile(curItem.id, API_KEY)
+            $("#" + curItem.id).addClass("active")
         }
-        //alert(key + ":  " + resultDict[key])
+
+
     }
 
 }

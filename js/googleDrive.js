@@ -1,65 +1,40 @@
-//CONSTANTS
-var API_KEY = "AIzaSyCezOKNqrj4hqNqIanUDNeqnupvHdGge-o"
-var FOLDER_ID = '0B1esFIYXspGHM2ZvbzFFaDNKT3c'
-
-
 /////
-///// RequestTextFile: gets the contents of the google doc in plaintext
+///// RequestTextFile
 /////
-function RequestTextFile(file_id){
+function RequestTextFile(file_id, api_key){
 
-    var promise = $.getJSON(BuildFileUrl(file_id, API_KEY), function( data, status){
+    var promise = $.getJSON(_BuildFileUrl(file_id, api_key), function( data, status){
         alert("Success")
     })
     .done(function( data ){
         JSON.stringify(data)
-        
+
     }).fail(function(jsonError){
         //This returns an error, despite working, and I don't know why
-        //alert("Google Drive File AJAX JSON Request failed, see browser log for full error.") 
+        //alert("Google Drive File AJAX JSON Request failed, see browser log for full error.")
         //console.log(JSON.stringify(jsonError.responseText))
 
         var result = jsonError.responseText
-        //sketchy way of removing the new page indicator
-        result = result.replace("________________", "")
+        result = result.replace("________________", "")//sketchy way of removing the new page indicator
         $("#file-contents").html(result)
     });
 
 }
 
 
-
-///// DELETE THIS -----------------------------------------------------
-///// ListTextFiles: Appends dictionary of file names to the webpage
 /////
-function ListTextFiles(textFiles){
-
-    var i = 0
-    for(key in textFiles){
-        if( i == 0){
-            RequestTextFile(textFiles[key])
-            i++
-        }
-        //alert("Key: " + key + "\nid: " + textFiles[key])
-        $("#insertion-point").after("<div>" + key + ": " + textFiles[key] + "</div>")
-    }
-}
-
-
-
+///// RequestFolderContents
 /////
-///// RequestTextFiles: Sends an api request for all the files in a google drive folder
-/////
-function RequestDocs(callback){
+function RequestFolderContents(callback, folder_id, api_key){
 
-    var promise = $.getJSON(BuildFolderUrl(FOLDER_ID, API_KEY), function( data, status){
+    var promise = $.getJSON(_BuildFolderUrl(folder_id, api_key), function( data, status){
         //alert("Success")
 
     }).done(function( data ){
-        callback(PackTextFiles(data)) //Add pack folders
+        callback(_PackFolderContents(data)) //Add folder id here, so we know who made the request
 
     }).fail(function(jsonError){
-        alert("Google Drive Folder AJAX JSON Request failed, see browser log for full error.") 
+        alert("Google Drive Folder AJAX JSON Request failed, see browser log for full error.")
         console.log(JSON.stringify(jsonError))
     });
 
@@ -67,44 +42,54 @@ function RequestDocs(callback){
 
 
 
-/////
-///// PackTextFiles: Puts found google doc files into a dictionary of form: {"fileName": "fileID", ...}
-/////
-function PackTextFiles(jsonData){
-    
-    textFiles = {}
+//////////
+//////////
+////////// Helper functions
+//////////
+//////////
+
+///
+/// _PackFolderContents
+///
+function _PackFolderContents(jsonData){
+    var folders = []
+    var documents = []
+
 
     for(var i = 0; i < jsonData.files.length; i++){
-        if(jsonData.files[i].mimeType == "application/vnd.google-apps.document"){
-           file_name = jsonData.files[i].name
-           file_id = jsonData.files[i].id
+        curItem = {}
 
-           textFiles[file_name] = file_id
+        curItem.name = jsonData.files[i].name
+        curItem.id = jsonData.files[i].id
+
+        if(jsonData.files[i].mimeType == "application/vnd.google-apps.document"){
+            curItem.type = "document"
+            documents.push(curItem)
         }
+        else if(jsonData.files[i].mimeType == "application/vnd.google-apps.folder"){
+            curItem.type = "folder"
+            folders.push(curItem)
+        }
+
+
     }
 
-    return textFiles
+    return documents.concat(folders)
 }
 
 
-/////
-///// PackFolders
-/////
-
-
-
-/////
-///// BuildFileUrl
-/////
-function BuildFileUrl(file_id, api_key){
-    return "https://www.googleapis.com/drive/v2/files/" + file_id + "/export?mimeType=text%2Fplain&key=" + api_key  
+///
+/// _BuildFileUrl
+///
+function _BuildFileUrl(file_id, api_key){
+    return "https://www.googleapis.com/drive/v2/files/" + file_id + "/export?mimeType=text%2Fplain&key=" + api_key
 }
 
 
 
-/////
-///// BuildFolderUrl
-/////
-function BuildFolderUrl(folder_id, api_key){
-    return "https://www.googleapis.com/drive/v3/files?q='" + folder_id + "'+in+parents&key=" + api_key 
+///
+/// _BuildFolderUrl
+///
+function _BuildFolderUrl(folder_id, api_key){
+    return "https://www.googleapis.com/drive/v3/files?q='" + folder_id + "'+in+parents&key=" + api_key
 }
