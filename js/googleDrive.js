@@ -16,7 +16,8 @@ function RequestTextFile(file_id, api_key){
 
         var result = jsonError.responseText
         result = result.replace("________________", "")//sketchy way of removing the new page indicator
-        $("#file-contents").html(result)
+
+        $("#file-contents").val(result)
     });
 
 }

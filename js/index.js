@@ -6,11 +6,11 @@ $(document).ready(function(){
     LoadNavBar("top-navigation", "top-nav-home")
     SetupButtons()
 
-    RequestFolderContents(RequestDocsCallback, ROOT_FOLDER_ID, API_KEY)
+    RequestFolderContents(RequestFolderContentsCallback, ROOT_FOLDER_ID, API_KEY)
 });
 
 
-function RequestDocsCallback(resultList){
+function RequestFolderContentsCallback(resultList){
 
 
     var firstDocumentFound = false
@@ -18,12 +18,13 @@ function RequestDocsCallback(resultList){
     for(var i = 0; i < resultList.length; i++){
         var curItem = resultList[i]
 
-        AddJsonFileButton("json-files", curItem.type, curItem.name, curItem.id)
+        //AddJsonFileButton("json-files", curItem.type, curItem.name, curItem.id)
+        $("#json-files").append(BuildJsonFileButton(curItem.type, curItem.name, curItem.id))
 
         if(firstDocumentFound == false && curItem.type == "document"){
             firstDocumentFound = true
             RequestTextFile(curItem.id, API_KEY)
-            $("#" + curItem.id).addClass("active")
+            $("#current-file").text(curItem.name)
         }
 
 
@@ -47,12 +48,28 @@ function SetupButtons(){
 
     $("#customize-input").click(function(){
         $("#json-files button").removeClass("active")
-        $(this).addClass("active")
 
+        $("#current-file").text("Customize Input...")
         $("#file-contents").removeAttr("readonly")
     });
 
     $("#perform-request").click(function(){
         alert("perform request")
+    });
+
+
+    $("#json-files").on('click', '.dropdown-toggle', function(){
+        alert("meow")
+    });
+
+    $("#json-files").on('click', 'button:not(.dropdown-toggle, #customize-input)', function(){
+        var fileName = $(this).find(".name").text()
+        var fileID = this.id
+
+        $("#file-contents").val('Loading...')
+        $("#file-contents").attr("readonly", true)
+
+        RequestTextFile(fileID, API_KEY)
+        $("#current-file").text(fileName)
     });
 }

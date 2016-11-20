@@ -7,6 +7,9 @@
     cursor: hand;
 }
 
+#json-files{
+    width: 100%;
+}
 
 #file-contents:read-write{
     background-color: white;
@@ -26,4 +29,8 @@
 #request-result{
     resize: vertical;
     margin-bottom: 30vh;
+}
+
+#json-files .btn-group{
+    width: 100%;
 }

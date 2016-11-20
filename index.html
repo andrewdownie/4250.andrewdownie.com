@@ -7,7 +7,7 @@
     <script src="js/googleDrive.js"></script>
 
     <!-- Include JS -->
-    <script src="js/AddJsonFileButton.js"></script>
+    <script src="js/BuildJsonFileButton.js"></script>
     <script src="js/loadNavBar.js"></script>
     <script src="js/index.js"></script>
 
@@ -31,15 +31,15 @@
 
     <!-- File List -->
                 <h3>Json Files</h3>
-                <div class="list-group" id="json-files">
+                <div class="btn-group" role="group" id="json-files">
                     <button type="button" class="list-group-item" id="customize-input"><span class="glyphicon glyphicon-pencil"></span>&nbsp;Customize Input...</button>
                 </div>
             </div>
 
     <!-- File Contents -->
             <div class="col-md-9">
-                <h3>File Contents</h3>
-                <textarea readonly class="panel-body jumbotron" id="file-contents">
+                <h3>File Contents <small id="current-file"></small></h3>
+                <textarea readonly="readonly" class="panel-body jumbotron" id="file-contents">
                 </textarea>
 
             </div>
