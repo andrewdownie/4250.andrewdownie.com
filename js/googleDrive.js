@@ -14,8 +14,9 @@ function RequestTextFile(file_id, api_key){
         //alert("Google Drive File AJAX JSON Request failed, see browser log for full error.")
         //console.log(JSON.stringify(jsonError.responseText))
 
-        var result = jsonError.responseText
-        result = result.replace("________________", "")//sketchy way of removing the new page indicator
+        var response = jsonError.responseText
+        var result = response.replace(/________________/g, "")//sketchy way of removing the new page indicator
+        //alert(result)
 
         $("#file-contents").val(result)
     });

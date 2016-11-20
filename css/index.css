@@ -15,6 +15,10 @@
 #file-contents:read-write{
     background-color: white;
 }
+#json-files{
+    max-height: 55vh;
+    overflow-y: scroll;
+}
 
 #file-contents,
 #request-result{
