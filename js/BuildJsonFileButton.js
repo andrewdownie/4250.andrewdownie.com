@@ -8,7 +8,7 @@ function BuildJsonFileLink(name, id){
     fileLink += '<li>'
     fileLink += '    <a id="' + id + '">'
     fileLink += '        <span class="glyphicon ' + DOCUMENT_ICON + '"></span>&nbsp;'
-    fileLink +=          name
+    fileLink += '         <span class="name">' + name + '</span>'
     fileLink += '    </a>'
     fileLink += '</li>'
 

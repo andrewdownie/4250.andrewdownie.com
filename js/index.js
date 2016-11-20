@@ -85,6 +85,7 @@ function SetupButtons(){
     });
 
     $("#json-files").on('click', '.btn-group ul li a', function(){
+        var folderName = $(this).parent().parent().parent().find("button .name").text()
         var fileName = $(this).find(".name").text()
         var fileID = this.id
 
@@ -92,6 +93,6 @@ function SetupButtons(){
         $("#file-contents").attr("readonly", true)
 
         RequestTextFile(fileID, API_KEY)
-        $("#current-file").text(fileName)
+        $("#current-file").text(folderName + "/" + fileName)
     });
 }
